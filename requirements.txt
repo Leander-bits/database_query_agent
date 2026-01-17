@@ -2,7 +2,6 @@ fastapi
 uvicorn
 python-dotenv
 pyodbc
-SQLAlchemy<2.0
 langchain
 langchain-community
 pydantic
@@ -11,7 +10,7 @@ streamlit
 pandas
 requests
 langchain_openai
-sqlalchemy
+sqlalchemy<2.0
 langchain_chroma
 langchain_text_splitters
 supabase

@@ -1,4 +1,4 @@
-from app.services.chat_service import get_ollama_model
+from app.services.chat_service import get_chat_model
 from app.prompts.search_prompts import GENERATE_SQL_QUERY_PROMPT
 from langchain_core.prompts import PromptTemplate
 from app.core.settings import settings
@@ -16,7 +16,7 @@ def generate_sql_query(question:str) -> str:
         build_update_index()
     context = retrieve_context(question, k=1, max_chars=1500)
 
-    ollama_model = get_ollama_model()
+    chat_model = get_chat_model()
     prompt = PromptTemplate.from_template(GENERATE_SQL_QUERY_PROMPT)
     text = prompt.format(
         context=context,
@@ -26,7 +26,7 @@ def generate_sql_query(question:str) -> str:
         default_top=20,
         question=question,
     )
-    response = ollama_model.invoke(text).content.strip()
+    response = chat_model.invoke(text).content.strip()
     try:
         response_clean = re.sub(r"```(json)?", "", response).strip("` \n")
         data = json.loads(response_clean)
