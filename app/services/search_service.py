@@ -1,4 +1,4 @@
-from app.services.ollama_service import get_ollama_model
+from app.services.chat_service import get_ollama_model
 from app.prompts.search_prompts import GENERATE_SQL_QUERY_PROMPT
 from langchain_core.prompts import PromptTemplate
 from app.core.settings import settings

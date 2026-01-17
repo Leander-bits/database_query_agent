@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     supabase_url:str = Field(..., env="SUPABASE_URL")
     supabase_anon_key:str = Field(..., env="SUPABASE_ANON_KEY")
     # deepseek
+    deepseek_url:str = Field(..., env="DEEPSEEK_URL")
     deepseek_api_key:str = Field(..., env="DEEPSEEK_API_KEY")
     deepseek_model:str = Field(..., env="DEEPSEEK_MODEL")
     # prompt

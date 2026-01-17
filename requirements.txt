@@ -10,9 +10,9 @@ pydantic_settings
 streamlit
 pandas
 requests
-langchain_ollama
+langchain_openai
 sqlalchemy
 langchain_chroma
 langchain_text_splitters
-graphrag
 supabase
+openai
