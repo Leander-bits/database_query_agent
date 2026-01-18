@@ -9,7 +9,7 @@ import os
 from app.core.settings import settings
 
 HEADERS = [("#", "h1"), ("##", "h2"), ("###", "h3")]
-INDEX_DIR = "app/data/rag_index_house"
+INDEX_DIR = "app/data"
 DOC_PATHS = ["app/docs/index.md"]
 
 os.makedirs(INDEX_DIR, exist_ok=True)
