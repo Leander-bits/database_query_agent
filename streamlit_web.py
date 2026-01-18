@@ -5,6 +5,7 @@ from supabase import create_client, Client
 
 SUPABASE_URL = st.secrets.get("SUPABASE_URL", "")
 SUPABASE_ANON_KEY = st.secrets.get("SUPABASE_ANON_KEY", "")
+BACKEND_URL = st.secrets.get("RENDER_URL", "") + "/ask"
 
 def supabase_sign_in(email: str, password: str) -> str:
     if not SUPABASE_URL or not SUPABASE_ANON_KEY:

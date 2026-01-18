@@ -2,9 +2,7 @@ from app.services.chat_service import get_chat_model
 from app.prompts.search_prompts import GENERATE_SQL_QUERY_PROMPT
 from langchain_core.prompts import PromptTemplate
 from app.core.settings import settings
-from app.tools.rag import build_update_index, retrieve_context
-from pathlib import Path
-from app.tools.rag import INDEX_DIR
+from app.tools.rag import retrieve_context
 import json
 import re
 from supabase import create_client
@@ -12,16 +10,14 @@ from supabase import create_client
 # generate SQL query
 def generate_sql_query(question:str) -> str:
 
-    if not Path(INDEX_DIR).exists():
-        build_update_index()
     context = retrieve_context(question, k=1, max_chars=1500)
 
     chat_model = get_chat_model()
     prompt = PromptTemplate.from_template(GENERATE_SQL_QUERY_PROMPT)
     text = prompt.format(
         context=context,
-        schema=settings.lookup_schema,
-        table=settings.lookup_table,
+        schema=settings.schema_name,
+        table=settings.table_name,
         allowed_columns=", ".join(settings.allowed_columns),
         default_top=20,
         question=question,

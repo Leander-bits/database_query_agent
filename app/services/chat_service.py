@@ -5,7 +5,7 @@ from app.core.settings import settings
 def get_chat_model()  -> ChatOpenAI:
     model = ChatOpenAI(
         api_key=settings.deepseek_api_key,
-        base_url=settings.deepseek_base_url,
+        base_url=settings.deepseek_url,
         model=settings.deepseek_model,
         temperature=0,
     )

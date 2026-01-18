@@ -10,6 +10,12 @@ class Settings(BaseSettings):
     deepseek_url:str = Field(..., env="DEEPSEEK_URL")
     deepseek_api_key:str = Field(..., env="DEEPSEEK_API_KEY")
     deepseek_model:str = Field(..., env="DEEPSEEK_MODEL")
+    # embedding
+    embedding_api_key:str = Field(..., env="EMBEDDING_API_KEY")
+    embedding_model:str = Field(..., env="EMBEDDING_MODEL")
+    # database
+    schema_name:str = Field(..., env="SCHEMA_NAME")
+    table_name:str = Field(..., env="TABLE_NAME")
     # prompt
     allowed_columns: Set[str] = {
         "delivery_note_number", "tracking_number", "delivery_note_status", "pod_document",
