@@ -73,6 +73,7 @@ def execute_sql_query(sql_query: str, jwt: str):
     if not is_safe_sql_query(sql_query):
         return [], "SQL rejected by safety check."
     sql_query = ensure_limit_clause(sql_query)
+    sql_query = sql_query.strip().rstrip(";")
     client = create_client(
         settings.supabase_url,
         settings.supabase_service_role_key
