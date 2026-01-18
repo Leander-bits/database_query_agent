@@ -64,3 +64,5 @@ __pycache__/
 *.py[cod]
 
 rag_index_house/
+
+.devcontainer/
