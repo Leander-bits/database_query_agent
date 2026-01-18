@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     deepseek_api_key:str = Field(..., env="DEEPSEEK_API_KEY")
     deepseek_model:str = Field(..., env="DEEPSEEK_MODEL")
     # embedding
-    embedding_api_key:str = Field(..., env="EMBEDDING_API_KEY")
+    openai_api_key:str = Field(..., env="OPENAI_API_KEY")
     embedding_model:str = Field(..., env="EMBEDDING_MODEL")
     # database
     schema_name:str = Field(..., env="SCHEMA_NAME")
