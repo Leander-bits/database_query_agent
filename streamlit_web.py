@@ -4,13 +4,13 @@ import streamlit as st
 from supabase import create_client, Client
 
 SUPABASE_URL = st.secrets.get("SUPABASE_URL", "")
-SUPABASE_ANON_KEY = st.secrets.get("SUPABASE_ANON_KEY", "")
+SUPABASE_SERVICE_ROLE_KEY = st.secrets.get("SUPABASE_SERVICE_ROLE_KEY", "")
 BACKEND_URL = st.secrets.get("BACKEND_URL", "")
 
 def supabase_sign_in(email: str, password: str) -> str:
-    if not SUPABASE_URL or not SUPABASE_ANON_KEY:
-        raise RuntimeError("Missing SUPABASE_URL / SUPABASE_ANON_KEY in Streamlit secrets.")    
-    supabase: Client = create_client(SUPABASE_URL, SUPABASE_ANON_KEY)
+    if not SUPABASE_URL or not SUPABASE_SERVICE_ROLE_KEY:
+        raise RuntimeError("Missing SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY in Streamlit secrets.")
+    supabase: Client = create_client(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
     response = supabase.auth.sign_in_with_password({"email": email, "password": password})
     if not response.session or not response.session.access_token:
         raise RuntimeError("Login succeeded but no session/access_token returned.")

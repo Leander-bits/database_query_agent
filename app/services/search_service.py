@@ -5,7 +5,7 @@ from app.core.settings import settings
 from app.tools.rag import retrieve_context
 import json
 import re
-from supabase import create_client, ClientOptions
+from supabase import create_client
 
 # generate SQL query
 def generate_sql_query(question:str) -> str:
@@ -75,13 +75,7 @@ def execute_sql_query(sql_query: str, jwt: str):
     sql_query = ensure_limit_clause(sql_query)
     client = create_client(
         settings.supabase_url,
-        settings.supabase_anon_key,
-        options=ClientOptions(
-            headers={
-                "Authorization": f"Bearer {jwt}",
-                "apikey": settings.supabase_anon_key,
-            }
-        )
+        settings.supabase_service_role_key
     )
     try:
         response = client.rpc(

@@ -5,7 +5,7 @@ from typing import Set
 class Settings(BaseSettings):
     # supabase
     supabase_url:str = Field(..., env="SUPABASE_URL")
-    supabase_anon_key:str = Field(..., env="SUPABASE_ANON_KEY")
+    supabase_service_role_key:str = Field(..., env="SUPABASE_SERVICE_ROLE_KEY")
     # deepseek
     deepseek_url:str = Field(..., env="DEEPSEEK_URL")
     deepseek_api_key:str = Field(..., env="DEEPSEEK_API_KEY")
