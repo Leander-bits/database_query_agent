@@ -64,7 +64,7 @@ def call_backend(question: str, ):
         headers = {}
         if st.session_state.get("jwt"):
             headers["Authorization"] = f"Bearer {st.session_state.jwt}"
-        response = requests.post(BACKEND_URL, json=payload, headers=headers, timeout=60)
+        response = requests.post(BACKEND_URL, json=payload, headers=headers, timeout=300)
         response.raise_for_status()
         return response.json()
     except Exception as e:
