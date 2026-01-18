@@ -61,7 +61,10 @@ def call_backend(question: str, ):
         "question": question
     }
     try:
-        response = requests.post(BACKEND_URL, json=payload, timeout=60)
+        headers = {}
+        if st.session_state.get("jwt"):
+            headers["Authorization"] = f"Bearer {st.session_state.jwt}"
+        response = requests.post(BACKEND_URL, json=payload, headers=headers, timeout=60)
         response.raise_for_status()
         return response.json()
     except Exception as e:
@@ -71,7 +74,9 @@ def call_backend(question: str, ):
             "rows": [],
             "note": f"请求后端出错: {e}"
         }
-
+if not st.session_state.get("jwt"):
+    st.info("Please login first (sidebar) to use the query agent.")
+    st.stop()
 prompt = st.chat_input("Enter your question here...")
 if prompt:
     st.session_state.messages.append({"role": "user", "content": prompt})
